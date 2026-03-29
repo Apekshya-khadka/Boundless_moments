@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Photography - Boundless Moments</title>
+  <link rel="stylesheet" href="css/style.css">
+ 
+</head>
+<body>
+
+<header>
+  <h1>Wedding Photography</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="experience.html">Experience</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html">Admin</a>
+  </nav>
+</header>
+
+<section class="gallery-grid">
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1735052713180-2dd81cbe3281?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8d2VkZGluZyUyMHBob3RvZ3JhcGh5JTIwdHJhZGl0aW9uYWx8ZW58MHx8MHx8fDA%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1762709413369-929122a5bcd4?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8d2VkZGluZyUyMHBob3RvZ3JhcGh5JTIwdHJhZGl0aW9uYWx8ZW58MHx8MHx8fDA%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/1491447434/photo/bengali-wedding-ritual-closeup-image.webp?a=1&b=1&s=612x612&w=0&k=20&c=xuKZgr9DJ6jYxheEpUyFbtzM9NiXbsK8Y7v23RxKGWU=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/1186214696/photo/hindu-wedding-ritual-wherein-bride-and-groom-hand.webp?a=1&b=1&s=612x612&w=0&k=20&c=TDlfitfgP1f1Z2zp6WBW2Ezyk5Ed3BCeD9HcNEVoKzo=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/1175680516/photo/we-waited-so-long-for-this-day.jpg?s=612x612&w=0&k=20&c=w_kZmA7ygKVL0seAXRquU1-x_0gwENBswuv4xyejkI4=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/1141906552/photo/indian-hindu-couple-holding-each-other-hands-during-their-marriage-symbolising-love-and.jpg?s=612x612&w=0&k=20&c=brG8OkGBo5-tIABHlnGtVMu9X4lAC8ebpqGA2Xire6E=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2240916784/photo/groom-tying-a-toe-ring-on-the-brides-foot-during-a-traditional-indian-wedding-ceremony.jpg?s=612x612&w=0&k=20&c=iLr_IzVdL3kVqKHT-N3GaITOoaOAchEnex_-mLeR54E=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2225019337/photo/portrait-of-very-beautiful-young-indian-bride-in-luxurious-bridal-costume-with-makeup-and.jpg?s=612x612&w=0&k=20&c=lbbAN55gQiRBD4-8Nocxsn-2C0XubsKiNh3NBOHdQSc=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2195967847/photo/indian-hindu-wedding-ceremony-ritual-sacred-fire-close-up.jpg?s=612x612&w=0&k=20&c=tqKUppjupDsScPubv236uQw4L128Rkcjfkw4Q33H7-s=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2231960284/photo/a-pile-of-indian-currency-notes-placed-on-a-red-decorative-cloth-symbolizing-offering-wealth.jpg?s=612x612&w=0&k=20&c=W1POAEt-TeDAQ_GSKm93sJIEHVkJPBmMx96PPOwriQs=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2252205424/photo/exchanging-red-envelopes-during-traditional-chinese-wedding-ceremony.jpg?s=612x612&w=0&k=20&c=df_ueuY34iLU5r-1YQJ9n1jvRfhP82ieJyj5iF67ZdQ=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2239669053/photo/indian-hindu-traditional-wedding-ceremony-ritual-items-and-hands-close-up.jpg?s=612x612&w=0&k=20&c=fU4SQHCwTdzReBqAL4JcVV86GDzDa1sJsowJr2jVoqg=" alt=""onclick="openLightbox(this)"></div>
+</section>
+
+<!-- Lightbox container -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <span class="close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+function openLightbox(imgElement) {
+  document.getElementById("lightbox").style.display = "flex";
+  document.getElementById("lightbox-img").src = imgElement.src;
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").style.display = "none";
+}
+</script>
+
+</body>
+</html>

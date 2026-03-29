@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Boundless Moments</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 20px;
+    }
+    .portfolio-item {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: center;
+    }
+    .portfolio-item img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Our Portfolio</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="experience.html">Experience</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html">Admin</a>
+  </nav>
+</header>
+
+<section class="portfolio-grid">
+  <!-- Wedding Category -->
+  <div class="portfolio-item">
+    <a href="wedding.html">
+      <img src="https://images.unsplash.com/photo-1621801306185-8c0ccf9c8eb8?w=1000&auto=format&fit=crop&q=60" alt="Wedding Photography">
+      <h3>Wedding Photography</h3>
+    </a>
+    <p>Traditional and modern weddings captured with artistry.</p>
+  </div>
+
+  <!-- Couple Category -->
+  <div class="portfolio-item">
+    <a href="couple.html">
+      <img src="https://plus.unsplash.com/premium_photo-1664530453131-ed0e68f9189c?w=1000&auto=format&fit=crop&q=60" alt="Couple Photoshoot">
+      <h3>Couple Photoshoot</h3>
+    </a>
+    <p>Golden-hour outdoor portraits with natural poses.</p>
+  </div>
+
+  <!-- Fashion Category -->
+  <div class="portfolio-item">
+    <a href="fashion.html">
+      <img src="https://images.unsplash.com/photo-1574015974293-817f0ebebb74?w=1000&auto=format&fit=crop&q=60" alt="Fashion Editorial">
+      <h3>Fashion Editorial</h3>
+    </a>
+    <p>Studio portraits with dramatic styling and lighting.</p>
+  </div>
+
+  <!-- Brand Promotion -->
+  <div class="portfolio-item">
+    <a href="brand.html">
+      <img src="https://images.unsplash.com/photo-1594034156811-082d3ced1d5e?w=1000&auto=format&fit=crop&q=60" alt="Brand Promotion">
+      <h3>Brand Promotion</h3>
+    </a>
+    <p>Every page tells a story, every brand builds a journey.</p>
+  </div>
+
+  <!-- Event Photography -->
+  <div class="portfolio-item">
+    <a href="event.html">
+      <img src="https://images.unsplash.com/photo-1591833330168-ddbc9ea80223?w=1000&auto=format&fit=crop&q=60" alt="Event Photography">
+      <h3>Event Photography</h3>
+    </a>
+    <p>Capturing memorable moments from corporate events, parties, and celebrations.</p>
+  </div>
+
+  <!-- Portrait Photography -->
+  <div class="portfolio-item">
+    <a href="portrait.html">
+      <img src="https://images.unsplash.com/photo-1606143412458-acc5f86de897?w=1000&auto=format&fit=crop&q=60" alt="Portrait Photography">
+      <h3>Portrait Photography</h3>
+    </a>
+    <p>Professional and candid portraits that capture personality and emotion.</p>
+  </div>
+</section>
+
+<!-- Dynamic Portfolio Items -->
+<section class="portfolio-grid" id="dynamicPortfolio">
+  <!-- Admin-added items will appear here -->
+</section>
+
+<script>
+fetch('/portfolio')
+  .then(res => {
+    if (!res.ok) throw new Error('Server returned ' + res.status);
+    return res.json();
+  })
+  .then(items => {
+    const grid = document.getElementById('dynamicPortfolio');
+
+    if (!Array.isArray(items) || items.length === 0) {
+      grid.innerHTML = "<p>No additional portfolio items yet.</p>";
+      return;
+    }
+
+    items.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'portfolio-item';
+      div.innerHTML = `
+        <img src="${item.image_url}" alt="${item.title}">
+        <h3>${item.title}</h3>
+        <p>${item.description}</p>
+      `;
+      grid.appendChild(div);
+    });
+  })
+  .catch(err => {
+    console.error('Error loading portfolio:', err);
+    document.getElementById('dynamicPortfolio').innerHTML = "<p>Error loading portfolio items.</p>";
+  });
+</script>
+
+</body>
+</html>

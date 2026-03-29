@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Boundless Moments</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .contact-section {
+      padding: 50px 0;
+      background: #fff;
+    }
+    .contact-section h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #111;
+      font-size: 2rem;
+    }
+    .contact-section p {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #555;
+    }
+    .contact-container {
+      display: flex;
+      justify-content: center;
+    }
+    .contact-form {
+      flex: 1 1 400px;
+      background: #f4f4f4;
+      padding: 25px;
+      border-radius: 10px;
+    }
+    .contact-form label {
+      display: block;
+      margin-bottom: 5px;
+      color: #111;
+      font-weight: bold;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .contact-form button {
+      background: #e67e22;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+    .contact-form button:hover {
+      background: #cf6b1b;
+    }
+    .success-message {
+      text-align: center;
+      padding: 15px;
+      margin-bottom: 20px;
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 5px;
+    }
+    @media (max-width: 768px) {
+      .contact-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>  Contact</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="experience.html">Experience</a>
+        <a href="contact.html" class="active">Contact</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="contact-section">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <p>We’d love to hear from you! Reach out for bookings, collaborations, or photography inquiries.</p>
+
+        <!-- Success message placeholder -->
+        <div id="successMessage" class="success-message" style="display:none;">
+          Thank you! Your message has been sent successfully.
+        </div>
+
+        <div class="contact-container">
+          <!-- Contact Form -->
+          <form action="/contact" method="POST" class="contact-form">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Boundless Moments. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

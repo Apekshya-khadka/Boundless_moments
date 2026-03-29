@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - Boundless Moments</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .gallery-item img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+    }
+
+    .lightbox .close {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Gallery</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="experience.html">Experience</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html">Admin</a>
+  </nav>
+</header>
+
+<section class="gallery-grid">
+  <!-- Wedding photos -->
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1735052713180-2dd81cbe3281?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8d2VkZGluZyUyMHBob3RvZ3JhcGh5JTIwdHJhZGl0aW9uYWx8ZW58MHx8MHx8fDA%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1762709413369-929122a5bcd4?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8d2VkZGluZyUyMHBob3RvZ3JhcGh5JTIwdHJhZGl0aW9uYWx8ZW58MHx8MHx8fDA%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/1491447434/photo/bengali-wedding-ritual-closeup-image.webp?a=1&b=1&s=612x612&w=0&k=20&c=xuKZgr9DJ6jYxheEpUyFbtzM9NiXbsK8Y7v23RxKGWU=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/1186214696/photo/hindu-wedding-ritual-wherein-bride-and-groom-hand.webp?a=1&b=1&s=612x612&w=0&k=20&c=TDlfitfgP1f1Z2zp6WBW2Ezyk5Ed3BCeD9HcNEVoKzo=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/1175680516/photo/we-waited-so-long-for-this-day.jpg?s=612x612&w=0&k=20&c=w_kZmA7ygKVL0seAXRquU1-x_0gwENBswuv4xyejkI4=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/1141906552/photo/indian-hindu-couple-holding-each-other-hands-during-their-marriage-symbolising-love-and.jpg?s=612x612&w=0&k=20&c=brG8OkGBo5-tIABHlnGtVMu9X4lAC8ebpqGA2Xire6E=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2240916784/photo/groom-tying-a-toe-ring-on-the-brides-foot-during-a-traditional-indian-wedding-ceremony.jpg?s=612x612&w=0&k=20&c=iLr_IzVdL3kVqKHT-N3GaITOoaOAchEnex_-mLeR54E=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2225019337/photo/portrait-of-very-beautiful-young-indian-bride-in-luxurious-bridal-costume-with-makeup-and.jpg?s=612x612&w=0&k=20&c=lbbAN55gQiRBD4-8Nocxsn-2C0XubsKiNh3NBOHdQSc=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2195967847/photo/indian-hindu-wedding-ceremony-ritual-sacred-fire-close-up.jpg?s=612x612&w=0&k=20&c=tqKUppjupDsScPubv236uQw4L128Rkcjfkw4Q33H7-s=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2231960284/photo/a-pile-of-indian-currency-notes-placed-on-a-red-decorative-cloth-symbolizing-offering-wealth.jpg?s=612x612&w=0&k=20&c=W1POAEt-TeDAQ_GSKm93sJIEHVkJPBmMx96PPOwriQs=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2252205424/photo/exchanging-red-envelopes-during-traditional-chinese-wedding-ceremony.jpg?s=612x612&w=0&k=20&c=df_ueuY34iLU5r-1YQJ9n1jvRfhP82ieJyj5iF67ZdQ=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2239669053/photo/indian-hindu-traditional-wedding-ceremony-ritual-items-and-hands-close-up.jpg?s=612x612&w=0&k=20&c=fU4SQHCwTdzReBqAL4JcVV86GDzDa1sJsowJr2jVoqg=" alt=""onclick="openLightbox(this)"></div>
+
+  <!-- Couple photos -->
+  <div class="gallery-item"><img src="https://plus.unsplash.com/premium_photo-1675851211519-fc13d860e103?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d2VkZGluZyUyMHBob3RvZ3JhcGh5fGVufDB8fDB8fHww" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1533091090875-1ff4acc497dd?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2VkZGluZyUyMHBob3RvZ3JhcGh5fGVufDB8fDB8fHww" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1604017011826-d3b4c23f8914?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8d2VkZGluZyUyMHBob3RvZ3JhcGh5fGVufDB8fDB8fHww" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1573676048035-9c2a72b6a12a?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d2VkZGluZyUyMHBob3RvZ3JhcGh5fGVufDB8fDB8fHww" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1617724975854-70b5d0cedb0a?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8d2VkZGluZyUyMHBob3RvZ3JhcGh5fGVufDB8fDB8fHww" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1769374071375-c44bc0149692?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8d2VkZGluZyUyMHBob3RvZ3JhcGh5JTIwd2l0aG91dCUyMGZhY2V8ZW58MHx8MHx8fDA%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1629807097065-79bd3273e656?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHdlZGRpbmclMjBwaG90b2dyYXBoeSUyMHdpdGhvdXQlMjBmYWNlfGVufDB8fDB8fHww" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1550720573-bb4253240b9c?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHdlZGRpbmclMjBwaG90b2dyYXBoeSUyMHdpdGhvdXQlMjBmYWNlfGVufDB8fDB8fHww" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1771315176116-7ffbae4e3e3a?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHdlZGRpbmclMjBwaG90b2dyYXBoeSUyMHdpdGhvdXQlMjBmYWNlfGVufDB8fDB8fHww" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519741196428-6a2175fa2557?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHdlZGRpbmclMjBwaG90b2dyYXBoeXxlbnwwfHwwfHx8MA%3D%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://plus.unsplash.com/premium_photo-1661340932540-c285e730728a?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHdlZGRpbmclMjBwaG90b2dyYXBoeXxlbnwwfHwwfHx8MA%3D%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1562826772-be179f321470?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHdlZGRpbmclMjBwaG90b2dyYXBoeXxlbnwwfHwwfHx8MA%3D%3D" alt=""onclick="openLightbox(this)"></div>
+
+
+  <!-- Fashion Editorial -->
+
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1645996830739-8fe3df27c33f?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbiUyMGVkaXRvcmlhbHxlbnwwfHwwfHx8MA%3D%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1562151270-c7d22ceb586a?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZmFzaGlvbiUyMGVkaXRvcmlhbHxlbnwwfHwwfHx8MA%3D%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1603189343302-e603f7add05a?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZmFzaGlvbiUyMGVkaXRvcmlhbHxlbnwwfHwwfHx8MA%3D%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1664076458686-3449062080ac?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGZhc2hpb24lMjBlZGl0b3JpYWx8ZW58MHx8MHx8fDA%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://plus.unsplash.com/premium_photo-1726844813639-ae6e0c022423?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZhc2hpb24lMjBlZGl0b3JpYWx8ZW58MHx8MHx8fDA%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1645561305502-63a9ba09ab09?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGZhc2hpb24lMjBlZGl0b3JpYWx8ZW58MHx8MHx8fDA%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1629511617783-dc852a6e3768?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGZhc2hpb24lMjBlZGl0b3JpYWx8ZW58MHx8MHx8fDA%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/1264519804/photo/portrait-of-a-woman-with-flowers.webp?a=1&b=1&s=612x612&w=0&k=20&c=HvsqyvLkXIURGNdCmPQrXyinMFuI2T2AUCOTq65FpmI=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2201700663/photo/model-stands-gracefully-on-a-sprawling-fabric-backdrop-showcasing-a-sleek-black-dress-studio.jpg?s=612x612&w=0&k=20&c=QAUZokmYHV4b4ySPHTXN5MrWkmi3Z-GOlinpCNSwMjo=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2205820318/photo/model-showcases-a-delicate-white-tulle-outfit-striking-a-thoughtful-pose-with-a-soft.jpg?s=612x612&w=0&k=20&c=PqFk4Mi4xm_04_zYKrSidrR4aZWLsAiDDSjigygyT5U=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2204470669/photo/fashion-model-showcases-a-stunning-tulle-gown-with-puffed-sleeves-gently-leaning-against-a.jpg?s=612x612&w=0&k=20&c=LS0-DtCXOnudAMgxJ7yVQSyn-nn6HW2e38hy4P4CUhw=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2257410257/photo/woman-in-a-black-leather-trench-coat-looking-at-her-reflection-in-a-large-floor-mirror.jpg?s=612x612&w=0&k=20&c=pbLaCPHmR-NXqJPDzuIR7OKoeoOp9nacDFxlTwUQ-7o=" alt=""onclick="openLightbox(this)"></div>
+
+  <!-- Brand Photography -->
+   <div class="gallery-item"><img src="https://media.istockphoto.com/id/2156590823/photo/artificial-intelligence-content-generator-a-man-uses-a-laptop-to-interact-with-ai-assistant.jpg?s=612x612&w=0&k=20&c=aYqcAI0QM0M6q1awvGyJCP7YnokMKzkKPad9Lzwu6-I=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2195612559/photo/the-power-of-brand.jpg?s=612x612&w=0&k=20&c=Anlw44Y5W_eU4Z8I84SNSN-VUrnfKsf3_CDuTzlbBTA=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2173149531/photo/a-woman-at-film-studio-set-behind-the-scenes-concept.jpg?s=612x612&w=0&k=20&c=HBBDbxC0Lt7c4bj5G3jzk37EhVo7TiiPLTrDneqxdYY=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2198117851/photo/digital-overload-and-its-impact-on-the-human-brain-showcasing-fragmented-thoughts-information.jpg?s=612x612&w=0&k=20&c=BPuv9nXpOkB8fDtXHyf53wlywGTvMjRw5w5U14yoemY=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/842663424/photo/young-boy-speaks-through-megaphone.jpg?s=612x612&w=0&k=20&c=0rCKAWtsdas4hHexgBsGbDQOD7Bm1dNMvxi8kCCAJfE=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/525568423/photo/london-piccadilly-during-night.jpg?s=612x612&w=0&k=20&c=mBHnao0BnbANC1h2E-rOJ_tSviC7jTw9ir4tfp1V6uI=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/1150734727/photo/businesswoman-hand-placing-or-pulling-wooden-dominoes-with-brand-text-and-marketing.jpg?s=612x612&w=0&k=20&c=WxhtuHuAlxPEWM46N1m6pvqAHvNquvmOfmD-spoLs0o=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1675119715594-30fde4bd3dbc?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGJyYW5kJTIwcHJvbW90aW9ufGVufDB8fDB8fHww" alt=""onclick="openLightbox(this)"></div>
+
+  <!-- Event Photography -->
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1612389930565-6975454dc7cc?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZXZlbnQlMjBwaG90b2dyYXBoeXxlbnwwfHwwfHx8MA%3D%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZXZlbnQlMjBwaG90b2dyYXBoeXxlbnwwfHwwfHx8MA%3D%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZXZlbnQlMjBwaG90b2dyYXBoeXxlbnwwfHwwfHx8MA%3D%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1700558154233-233332b5fe41?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGV2ZW50JTIwcGhvdG9ncmFwaHl8ZW58MHx8MHx8fDA%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1584072554475-cacee06c7240?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGV2ZW50JTIwcGhvdG9ncmFwaHl8ZW58MHx8MHx8fDA%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/1447355262/photo/crowd-of-people-entering-music-festival.webp?a=1&b=1&s=612x612&w=0&k=20&c=VhjZEQd7zgtqtorpGdihL4aI-k_qBuWJIRyakRm8VRk=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2193841978/photo/portrait-of-a-woman-talking-on-an-ai-panel-discussion.jpg?s=612x612&w=0&k=20&c=g0rBs4hjAW_y89qskxxox_UExxUDmN6AwdXd9LfDVEk=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/1382269943/photo/group-of-diverse-business-people-on-panel-discussion.jpg?s=612x612&w=0&k=20&c=y3vc8xBUK1xejzt3kQ_5ukLi6cYil8c4hIQa7uD5rCI=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/513550806/photo/teenager-hipster-friends-partying-by-blowing-colorful-confetti-from-hands.jpg?s=612x612&w=0&k=20&c=BG0BHvW98AiLFyhiNy3NzlPZlGTUwHS-I8iYVvWmR78=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2177197862/photo/business-people-party-and-sparklers-at-night-for-celebration-diversity-and-happy-for-new-year.jpg?s=612x612&w=0&k=20&c=XycnaZweeus0hoRtgQWMDm_1ofzam_Y1BLp5OTeaioA=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/1415056757/photo/colorful-wedding-tents-at-night.jpg?s=612x612&w=0&k=20&c=tJ5NgHKJQs1gJuHTEpd1Uv6peTVxGs5puZUm9zpwT64=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2213065575/photo/outdoor-christmas-tree-background-with-light-bokeh.jpg?s=612x612&w=0&k=20&c=TYWhP2JN16hcsu9mdzPuzHF2sfwlXrFGbFlxnTRuPSE=" alt=""onclick="openLightbox(this)"></div>
+
+  <!-- Portrait Photography -->
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1624711517157-25991163e537?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cG9ydHJhaXQlMjBwaG90b2dyYXBoeXxlbnwwfHwwfHx8MA%3D%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1674932668403-33398b81c92f?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cG9ydHJhaXQlMjBwaG90b2dyYXBoeXxlbnwwfHwwfHx8MA%3D%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1617744966315-b3c950c430c7?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHBvcnRyYWl0JTIwcGhvdG9ncmFwaHl8ZW58MHx8MHx8fDA%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/1430299971/photo/young-woman-black-and-white-portrait-looking-at-camera-with-covered-mouth.jpg?s=612x612&w=0&k=20&c=lKPsayoW_1Prq4D-8LTSs4u3ZMJYiQdTk4brerA4Qgk=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1682098969397-8e35ea85d40d?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cG9ydHJhaXQlMjBwaG90b2dyYXBoeSUyMGhpZGluZyUyMGZhY2V8ZW58MHx8MHx8fDA%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://plus.unsplash.com/premium_photo-1750780506143-eee8a003d72a?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cG9ydHJhaXQlMjBwaG90b2dyYXBoeSUyMGhpZGluZyUyMGZhY2V8ZW58MHx8MHx8fDA%3D" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1759498163171-5db34c1d8cf9?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHBvcnRyYWl0JTIwcGhvdG9ncmFwaHklMjBoaWRpbmclMjBmYWNlfGVufDB8fDB8fHww" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1606432575250-4f805fca2021?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHBvcnRyYWl0JTIwcGhvdG9ncmFwaHklMjBoaWRpbmclMjBmYWNlfGVufDB8fDB8fHww" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1588599830253-6ceef61929c5?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBvcnRyYWl0JTIwcGhvdG9ncmFwaHklMjBoaWRpbmclMjBmYWNlfGVufDB8fDB8fHww" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1490090912740-03f13862c3e6?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHBvcnRyYWl0JTIwcGhvdG9ncmFwaHklMjBoaWRpbmclMjBmYWNlfGVufDB8fDB8fHww" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2193299912/photo/just-not-being-present.jpg?s=612x612&w=0&k=20&c=YHMns8w0I2muCb9u0hqMRleo-szrwXktt7RTHi1t6os=" alt=""onclick="openLightbox(this)"></div>
+  <div class="gallery-item"><img src="https://media.istockphoto.com/id/2259619317/photo/conscious-concealment.jpg?s=612x612&w=0&k=20&c=Oa81YJPpscReJE7L5dq9yoNoWl8sk-08GdJAnQ8lJLs=" alt=""onclick="openLightbox(this)"></div>
+
+
+
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <span class="close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+function openLightbox(imgElement) {
+  document.getElementById("lightbox").style.display = "flex";
+  document.getElementById("lightbox-img").src = imgElement.src;
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").style.display = "none";
+}
+</script>
+
+</body>
+</html>
