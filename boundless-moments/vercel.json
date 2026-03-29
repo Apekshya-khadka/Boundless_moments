@@ -6,7 +6,6 @@
   "routes": [
     { "src": "/admin/(.*)", "dest": "/server.js" },
     { "src": "/contact", "dest": "/server.js" },
-    { "src": "/portfolio", "dest": "/server.js" },
     { "src": "/.*", "dest": "/public/index.html" }
   ]
 }
