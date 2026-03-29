@@ -1,11 +1,11 @@
+require('dotenv').config();
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'boundlessmoments',
-    password: 'Appu@#9841', 
-    port: 5432,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false   // needed for Render’s hosted PostgreSQL
+  }
 });
 
 module.exports = pool;
