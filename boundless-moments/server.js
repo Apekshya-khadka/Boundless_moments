@@ -1,10 +1,9 @@
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
-const pool = require('../routes/db.js'); // database connection
+const pool = require('./routes/db.js'); // database connection
 
 const app = express();
-const port = 3000;
 
 // ------------------------
 // Middleware
@@ -12,7 +11,7 @@ const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from ./public (inside boundless-moments)
+// Serve static files from ./public
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ------------------------
@@ -37,7 +36,6 @@ app.get('/', (req, res) => {
 // ------------------------
 app.post('/admin/login', async (req, res) => {
     const { username, password } = req.body;
-    console.log('Login attempt:', username, password);
 
     if (!username || !password) {
         return res.status(400).send('Username and password required');
@@ -48,8 +46,6 @@ app.post('/admin/login', async (req, res) => {
             'SELECT * FROM users WHERE username = $1 AND password = $2',
             [username, password]
         );
-
-        console.log('DB result:', result.rows);
 
         if (result.rows.length > 0) {
             req.session.admin = true;
@@ -111,7 +107,7 @@ app.post('/contact', async (req, res) => {
 // ------------------------
 app.get('/admin/messages', async (req, res) => {
     if (!req.session.admin) {
-        return res.redirect('/admin.html'); // only admins can view
+        return res.redirect('/admin.html');
     }
 
     try {
@@ -126,8 +122,6 @@ app.get('/admin/messages', async (req, res) => {
 // ------------------------
 // ADMIN PORTFOLIO ROUTES
 // ------------------------
-
-// View all portfolio items
 app.get('/admin/portfolio', async (req, res) => {
     if (!req.session.admin) {
         return res.redirect('/admin.html');
@@ -142,7 +136,6 @@ app.get('/admin/portfolio', async (req, res) => {
     }
 });
 
-// Add a new portfolio item
 app.post('/admin/portfolio', async (req, res) => {
     if (!req.session.admin) {
         return res.status(403).send('Unauthorized');
@@ -165,7 +158,6 @@ app.post('/admin/portfolio', async (req, res) => {
     }
 });
 
-// Update an existing portfolio item
 app.put('/admin/portfolio/:id', async (req, res) => {
     if (!req.session.admin) {
         return res.status(403).send('Unauthorized');
@@ -186,7 +178,6 @@ app.put('/admin/portfolio/:id', async (req, res) => {
     }
 });
 
-// Delete a portfolio item
 app.delete('/admin/portfolio/:id', async (req, res) => {
     if (!req.session.admin) {
         return res.status(403).send('Unauthorized');
@@ -203,12 +194,7 @@ app.delete('/admin/portfolio/:id', async (req, res) => {
     }
 });
 
-
-
 // ------------------------
-// START SERVER
+// EXPORT APP FOR VERCEL
 // ------------------------
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-});
-
+module.exports = app;
