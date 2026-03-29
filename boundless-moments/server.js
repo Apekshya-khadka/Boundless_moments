@@ -5,48 +5,32 @@ const pool = require('./routes/db.js'); // database connection
 
 const app = express();
 
-// ------------------------
-// Middleware
-// ------------------------
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Serve static files from ./public
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ------------------------
-// Session
-// ------------------------
 app.use(session({
     secret: 'secret123',
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 60 * 60 * 1000 } // 1 hour
+    cookie: { maxAge: 60 * 60 * 1000 }
 }));
 
-// ------------------------
-// ROOT ROUTE
-// ------------------------
+// Root route
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// ------------------------
-// LOGIN ROUTE
-// ------------------------
+// Login
 app.post('/admin/login', async (req, res) => {
     const { username, password } = req.body;
-
-    if (!username || !password) {
-        return res.status(400).send('Username and password required');
-    }
+    if (!username || !password) return res.status(400).send('Username and password required');
 
     try {
         const result = await pool.query(
             'SELECT * FROM users WHERE username = $1 AND password = $2',
             [username, password]
         );
-
         if (result.rows.length > 0) {
             req.session.admin = true;
             req.session.username = username;
@@ -60,9 +44,7 @@ app.post('/admin/login', async (req, res) => {
     }
 });
 
-// ------------------------
-// DASHBOARD
-// ------------------------
+// Dashboard
 app.get('/admin/dashboard', (req, res) => {
     if (req.session.admin) {
         res.sendFile(path.join(__dirname, 'public', 'admin_dashboard.html'));
@@ -71,24 +53,17 @@ app.get('/admin/dashboard', (req, res) => {
     }
 });
 
-// ------------------------
-// LOGOUT
-// ------------------------
+// Logout
 app.get('/admin/logout', (req, res) => {
     req.session.destroy(() => {
         res.redirect('/admin.html');
     });
 });
 
-// ------------------------
-// CONTACT FORM ROUTE
-// ------------------------
+// Contact form
 app.post('/contact', async (req, res) => {
     const { name, email, message } = req.body;
-
-    if (!name || !email || !message) {
-        return res.status(400).send('All fields are required');
-    }
+    if (!name || !email || !message) return res.status(400).send('All fields are required');
 
     try {
         await pool.query(
@@ -102,99 +77,12 @@ app.post('/contact', async (req, res) => {
     }
 });
 
-// ------------------------
-// ADMIN VIEW MESSAGES
-// ------------------------
-app.get('/admin/messages', async (req, res) => {
-    if (!req.session.admin) {
-        return res.redirect('/admin.html');
-    }
+// Local dev + export for Vercel
+if (require.main === module) {
+    const port = process.env.PORT || 3000;
+    app.listen(port, () => {
+        console.log(`Server running on port ${port}`);
+    });
+}
 
-    try {
-        const result = await pool.query('SELECT * FROM messages ORDER BY created_at DESC');
-        res.json(result.rows);
-    } catch (err) {
-        console.error('Database error:', err);
-        res.status(500).send('Server error');
-    }
-});
-
-// ------------------------
-// ADMIN PORTFOLIO ROUTES
-// ------------------------
-app.get('/admin/portfolio', async (req, res) => {
-    if (!req.session.admin) {
-        return res.redirect('/admin.html');
-    }
-
-    try {
-        const result = await pool.query('SELECT * FROM portfolio ORDER BY created_at DESC');
-        res.json(result.rows);
-    } catch (err) {
-        console.error('Database error:', err);
-        res.status(500).send('Server error');
-    }
-});
-
-app.post('/admin/portfolio', async (req, res) => {
-    if (!req.session.admin) {
-        return res.status(403).send('Unauthorized');
-    }
-
-    const { title, description, image_url } = req.body;
-    if (!title || !description) {
-        return res.status(400).send('Title and description required');
-    }
-
-    try {
-        await pool.query(
-            'INSERT INTO portfolio (title, description, image_url) VALUES ($1, $2, $3)',
-            [title, description, image_url]
-        );
-        res.sendStatus(201);
-    } catch (err) {
-        console.error('Database error:', err);
-        res.status(500).send('Server error');
-    }
-});
-
-app.put('/admin/portfolio/:id', async (req, res) => {
-    if (!req.session.admin) {
-        return res.status(403).send('Unauthorized');
-    }
-
-    const { id } = req.params;
-    const { title, description, image_url } = req.body;
-
-    try {
-        await pool.query(
-            'UPDATE portfolio SET title=$1, description=$2, image_url=$3 WHERE id=$4',
-            [title, description, image_url, id]
-        );
-        res.sendStatus(200);
-    } catch (err) {
-        console.error('Database error:', err);
-        res.status(500).send('Server error');
-    }
-});
-
-app.delete('/admin/portfolio/:id', async (req, res) => {
-    if (!req.session.admin) {
-        return res.status(403).send('Unauthorized');
-    }
-
-    const { id } = req.params;
-
-    try {
-        await pool.query('DELETE FROM portfolio WHERE id=$1', [id]);
-        res.sendStatus(200);
-    } catch (err) {
-        console.error('Database error:', err);
-        res.status(500).send('Server error');
-    }
-});
-
-// ------------------------
-// EXPORT APP FOR VERCEL
-// ------------------------
 module.exports = app;
