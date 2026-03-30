@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #333;
+}
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+header h2 {
+    margin: 0;
+    color: #4a4a4a;
+}
+button {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s;
+}
+button:hover {
+    background: #e60000;
+}
+h3 {
+    margin-top: 20px;
+    color: #555;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+li {
+    background: #f4f6fb;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.empty {
+    text-align: center;
+    color: #aaa;
+    margin-top: 20px;
+}
+form {
+    margin-top: 15px;
+}
+form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-family: 'Poppins', sans-serif;
+}
+form button {
+    background: #4CAF50;
+}
+form button:hover {
+    background: #388E3C;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+    <header>
+        <h2>Welcome Admin 🎉</h2>
+        <button onclick="logout()">Logout</button>
+    </header>
+
+    <!-- Messages Section -->
+    <h3>📩 Messages</h3>
+    <ul id="messages"></ul>
+    <p id="empty" class="empty" style="display:none;">No messages yet</p>
+
+    <!-- Portfolio Section -->
+    <h3> Portfolio Items</h3>
+    <ul id="portfolio"></ul>
+    <p id="portfolio-empty" class="empty" style="display:none;">No portfolio items yet</p>
+
+    <!-- Add Portfolio Form -->
+    <h3>Add Portfolio Item</h3>
+    <form id="portfolioForm">
+        <input type="text" name="title" placeholder="Title" required>
+        <textarea name="description" placeholder="Description" required></textarea>
+        <input type="text" name="image_url" placeholder="Image URL">
+        <button type="submit">Add Item</button>
+    </form>
+</div>
+
+<script>
+// ------------------------
+// Load Messages
+// ------------------------
+function loadMessages() {
+    fetch('/admin/messages')
+    .then(res => {
+        if (!res.ok) throw new Error('Failed to load messages');
+        return res.json();
+    })
+    .then(data => {
+        const list = document.getElementById('messages');
+        const empty = document.getElementById('empty');
+        list.innerHTML = ''; // clear old content
+
+        if (!Array.isArray(data) || data.length === 0) {
+            empty.style.display = 'block';
+            return;
+        }
+        empty.style.display = 'none';
+
+        data.forEach(msg => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <div>
+                    <strong>${msg.name}</strong> (${msg.email})<br>
+                    ${msg.message}<br>
+                    <small>${msg.created_at ? new Date(msg.created_at).toLocaleString() : ''}</small>
+                </div>
+            `;
+            list.appendChild(li);
+        });
+    })
+    .catch(err => console.error('Error loading messages:', err));
+}
+
+// ------------------------
+// Load Portfolio Items
+// ------------------------
+function loadPortfolio() {
+    fetch('/admin/portfolio')
+    .then(res => {
+        if (!res.ok) throw new Error('Failed to load portfolio');
+        return res.json();
+    })
+    .then(items => {
+        const list = document.getElementById('portfolio');
+        const empty = document.getElementById('portfolio-empty');
+        list.innerHTML = ''; // clear old content
+
+        if (!Array.isArray(items) || items.length === 0) {
+            empty.style.display = 'block';
+            return;
+        }
+        empty.style.display = 'none';
+
+        items.forEach(item => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <div>
+                    <strong>${item.title}</strong><br>
+                    ${item.description}<br>
+                    <small>${item.created_at ? new Date(item.created_at).toLocaleString() : ''}</small><br>
+                    <button onclick="deletePortfolio(${item.id})">Delete</button>
+                </div>
+            `;
+            list.appendChild(li);
+        });
+    })
+    .catch(err => console.error('Error loading portfolio:', err));
+}
+
+// ------------------------
+// Add Portfolio Item
+// ------------------------
+document.getElementById('portfolioForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    fetch('/admin/portfolio', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            title: formData.get('title'),
+            description: formData.get('description'),
+            image_url: formData.get('image_url')
+        })
+    })
+    .then(res => {
+        if (!res.ok) throw new Error('Failed to add item');
+        return res.json();
+    })
+    .then(() => {
+        e.target.reset();
+        loadPortfolio(); // refresh list instead of reload
+    })
+    .catch(err => console.error('Error adding portfolio item:', err));
+});
+
+// ------------------------
+// Delete Portfolio Item
+// ------------------------
+function deletePortfolio(id) {
+    fetch('/admin/portfolio/' + id, { method: 'DELETE' })
+    .then(res => {
+        if (!res.ok) throw new Error('Failed to delete item');
+        return res.json();
+    })
+    .then(() => loadPortfolio()) // refresh list
+    .catch(err => console.error('Error deleting portfolio item:', err));
+}
+
+// ------------------------
+// Logout
+// ------------------------
+function logout() {
+    window.location.href = '/admin/logout';
+}
+
+// ------------------------
+// Initial Load
+// ------------------------
+loadMessages();
+loadPortfolio();
+</script>
+</body>
+</html>

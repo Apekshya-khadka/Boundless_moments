@@ -1,116 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Login</title>
-  <link rel="stylesheet" href="css/style.css">
-  <style>
-    /* Reset */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* Reset */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
 
-    body {
-      background: linear-gradient(to right, #cbc8ce, #b9bec5);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: #333;
-    }
+  body {
+    background: linear-gradient(to right, #cbc8ce, #b9bec5);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    color: #333;
+  }
 
-    header {
-      width: 100%;
-      background-color: rgba(0,0,0,0.8);
-      color: white;
-      padding: 15px 0;
-      text-align: center;
-      margin-bottom: 40px;
-    }
+  header {
+    width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    margin-bottom: 40px;
+  }
 
-    header h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
+  header h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
 
-    nav a {
-      color: white;
-      margin: 0 12px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s;
-    }
+  nav a {
+    color: white;
+    margin: 0 12px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+  }
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+  nav a:hover {
+    text-decoration: underline;
+  }
 
-    h2 {
-      color: white;
-      margin-bottom: 20px;
-      font-size: 24px;
-    }
+  h2 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+  }
 
-    form {
-      background-color: rgba(255,255,255,0.95);
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      width: 100%;
-      max-width: 400px;
-    }
+  form {
+    background-color: rgba(255,255,255,0.95);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+  }
 
-    form input {
-      width: 100%;
-      padding: 12px 15px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-      outline: none;
-      transition: 0.3s;
-    }
+  form input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+  }
 
-    form input:focus {
-      border-color: #2575fc;
-      box-shadow: 0 0 5px rgba(37,117,252,0.5);
-    }
+  form input:focus {
+    border-color: #2575fc;
+    box-shadow: 0 0 5px rgba(37,117,252,0.5);
+  }
 
-    form button {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      background: #0e0e0f;
-      color: white;
-      font-size: 18px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+  form button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #0e0e0f;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
 
-    form button:hover {
-      background: #533d6a;
-    }
+  form button:hover {
+    background: #533d6a;
+  }
 
-    #error {
-      text-align: center;
-      margin-top: 10px;
-    }
+  #error {
+    text-align: center;
+    margin-top: 10px;
+    color: red;
+  }
 
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 22px;
-      }
-
-      h2 {
-        font-size: 20px;
-      }
-    }
-  </style>
+  @media (max-width: 480px) {
+    header h1 { font-size: 22px; }
+    h2 { font-size: 20px; }
+    form { padding: 20px; }
+  }
+</style>
 </head>
 <body>
 
@@ -128,38 +128,50 @@
 
 <h2>Admin Login</h2>
 
-<form id="loginForm">
+<!-- Admin login form -->
+<form id="adminForm">
   <input type="text" name="username" placeholder="Username" required>
   <input type="password" name="password" placeholder="Password" required>
   <button type="submit">Login</button>
-  <p id="error" style="color:red;"></p>
 </form>
 
+<p id="error"></p>
+
 <script>
-const form = document.getElementById('loginForm');
+  const form = document.getElementById('adminForm');
+  const errorEl = document.getElementById('error');
 
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorEl.textContent = ''; // clear previous error
 
-  const data = {
-    username: form.username.value,
-    password: form.password.value
-  };
+    const formData = new FormData(form);
+    const payload = {
+      username: formData.get('username'),
+      password: formData.get('password')
+    };
 
-  // ✅ Use your Render backend URL
-  const res = await fetch('https://boundless-moments-5xsz.onrender.com/admin/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
+    try {
+      const res = await fetch('/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.redirected) {
+        // If server redirects, follow to dashboard
+        window.location.href = res.url;
+        return;
+      }
+
+      const text = await res.text();
+      errorEl.textContent = text; // show error from server
+
+    } catch (err) {
+      console.error(err);
+      errorEl.textContent = 'Server error. Try again later.';
+    }
   });
-
-  if (res.status === 200) {
-    // Redirect to dashboard served by backend
-    window.location.href = 'https://boundless-moments-5xsz.onrender.com/admin/dashboard';
-  } else {
-    document.getElementById('error').innerText = 'Invalid login';
-  }
-});
 </script>
 
 </body>
